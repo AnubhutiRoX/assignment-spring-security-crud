@@ -1,5 +1,7 @@
 package com.upxsystems.assignment.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
+
+	
+	/**
+	 * This has been added t support hazelcast
+	 */
+	private static final long serialVersionUID = 1037947780216557803L;
 
 	/** id is the primary key which is auto generated
 	 * */

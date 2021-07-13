@@ -1,5 +1,7 @@
 package com.upxsystems.assignment.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 
 import com.upxsystems.assignment.entity.User;
@@ -42,4 +44,11 @@ public interface UserService {
 	 * @return boolean to identify successful/unsuccessful deletion operation
 	 */
 	public boolean deleteUser(int id);
+
+	/**
+	 * getUser method is used to delegate the retrieval of user to userDAO
+	 * 
+	 * @return single user details
+	 */
+	Optional<User> getUser(int id);
 }

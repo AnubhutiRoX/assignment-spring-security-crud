@@ -1,6 +1,11 @@
 package com.upxsystems.assignment.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +37,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
+	 * getUser method is used to delegate the retrieval of user to userDAO
+	 * 
+	 * @return list of User objects
+	 */
+	@Override
+	@Transactional
+	@Cacheable(value="usersCache", key="#id")
+	public Optional<User> getUser(int id) {
+		return userDao.findById(id); // delegate the call to DAO
+	}
+	
+	/**
 	 * saveUser method is used to delegate the creation of new user to userDAO
 	 * 
 	 * @param user pojo without id
@@ -39,6 +56,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional
+	@Cacheable(value="uersCache", key="#user")
 	public User saveUser(User user) {
 		return userDao.save(user);
 	}
@@ -51,6 +69,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional
+	@CachePut(value="uersCache", key="#user")
 	public User updateUser(User user) {
 		return userDao.save(user);
 	}
@@ -64,6 +83,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional
+	@CacheEvict(value="uersCache", key="#id")
 	public boolean deleteUser(int id) {
 		if (userDao.findById(id) != null) {
 			userDao.deleteById(id);

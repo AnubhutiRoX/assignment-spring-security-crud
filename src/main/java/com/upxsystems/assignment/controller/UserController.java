@@ -1,5 +1,9 @@
 package com.upxsystems.assignment.controller;
 
+import java.util.Optional;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +40,18 @@ public class UserController {
 		return userService.getUsers();
 	}
 
+	/**
+	 * getUser method retrieves all the users from DB
+	 * 
+	 * @param id
+	 * @return list of users in json format
+	 * 
+	 */
+	@GetMapping("/{userId}")
+	public @ResponseBody Optional<User> getUser(@PathParam("userId") int id) {
+		return userService.getUser(id);
+	}
+	
 	/**
 	 * saveUser method creates a new entry in DB
 	 * 
