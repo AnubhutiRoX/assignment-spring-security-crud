@@ -1,11 +1,11 @@
 <html>
   <body>
-    A <b>Maven<b> project with simple Spring based web application with a controller exposing the following 4 APIs -
+    A Maven project with simple Spring based web application with a controller exposing the following 4 APIs -
 
-    • <b>GET</b> /user/list
-    • <b>POST</b> /user/create
-    • <b>PUT</b> /user/update
-    • <b>DELETE</b> /user/delete
+    • GET /user/list
+    • POST /user/create
+    • PUT /user/update
+    • DELETE /user/delete
 
     Those APIs will perform CRUD operations using a persistence framework on a User entity with the following fields:
 
@@ -14,7 +14,7 @@
     • password
     • status / possible values: Activated/Deactivated
 
-    The DB - <b>MySQL</b> is used to maintain the users record
+    The DB - MySQL is used to maintain the users record
 
     These 4 APIs are secured with Spring Security using inmemory <b>BASIC authentication</b>.
 
